@@ -1,3 +1,3 @@
  ProjectFinal_BD_Dzenan_DLoyer_AdamTremblay
 ##Auteurs: Projet Final du cours Bade de données par Dominique Loyer et Adam Tremblay
-[URL=http://nimga.fr/v/7FkNf]http://nimga.fr/m/7FkNf.png[/URL]
+<a href="http://nimga.fr/v/7FkNf" target="_blank"><img src="http://nimga.fr/m/7FkNf.png" alt="Selection_992.png" title="nimga.fr - Héberger images" border="0" /></a>
