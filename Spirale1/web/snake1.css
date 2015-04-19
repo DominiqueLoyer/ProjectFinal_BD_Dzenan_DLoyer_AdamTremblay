@@ -1,0 +1,168 @@
+body {
+  background-color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 15px;
+}
+
+h1, p {
+  color: #333;
+}
+
+#container_id {
+  height: 100px;
+  width: 150px;
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+
+
+#playground{
+  border: 0;
+  background-color:white;
+  
+}
+
+
+#A {
+  height: 10px;
+  width:100px;
+  border: 0;
+  background-color:white;
+  
+}
+
+#B {
+  height: 10px;
+  width:100px;
+  border: 0;
+  background-color:white;
+}
+
+#A1 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:black;
+}
+
+#A2 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:white;
+}
+#A3 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:black;
+}
+#A4 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:white;
+}
+#A5 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:black;
+}
+#A6 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:white;
+}
+#A7 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:black;
+}
+#A8 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:white;
+}
+#A9 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:black;
+}
+#A10 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:white;
+}
+
+#B1 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:white;
+}
+
+#B2 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:black;
+}
+#B3 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:white;
+}
+#B4 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:black;
+}
+#B5 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:white;
+}
+#B6 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:black;
+}
+#B7 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:white;
+}
+#B8{
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:black;
+}
+#B9 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:white;
+}
+#B10 {
+  height: 10px;
+  width:10px;
+  border: 0;
+  background-color:black;
+}
