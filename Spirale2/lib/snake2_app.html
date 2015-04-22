@@ -1,0 +1,45 @@
+<!--
+  Copyright (c) 2015, <your name>. All rights reserved. Use of this source code
+  is governed by a BSD-style license that can be found in the LICENSE file.
+-->
+
+<!-- import polymer-element's definition -->
+<link rel="import" href="../../packages/polymer/polymer.html">
+
+
+<polymer-element name="snake2-app">
+  <template>
+     <style>
+       :host {
+        display: block;
+      }
+      :host-context(.A1){
+        background-color: #fcfcfc;
+        }
+    </style>
+    
+    <h1>Snake version 1</h1>
+
+    <p>Yeah, here we go!!</p>
+
+    <div id='container_id'>
+      <button on-click="{{changeColor}}" class="button">Change to Blue!</button>
+      <button on-click="{{switchColors}}" class="button">Switch!!</button>
+      <button on-click="{{reset}}" class="button">Reset!!</button>
+    </div>
+    
+    <!--need to do a template with that-->
+    
+    <table id="playground">
+      <tr id='A'>
+        <td id='A1' class='A1'>yo</td><td id='A2'></td><td id='A3'></td><td id='A4'></td><td id='A5'></td><td id='A6'></td><td id='A7'></td><td id='A8'></td><td id='A9'></td><td id='A10'></td>
+      </tr>
+      <tr id='B'>
+        <td id='B1'></td><td id='B2'></td><td id='B3'>b3</td><td id='B4'></td><td id='B5'></td><td id='B6'></td><td id='B7'></td><td id='B8'></td><td id='B9'></td><td id='B10'></td>
+      </tr>
+    </table>
+
+    
+  </template>  
+  <script type="application/dart" src="snake2_app.dart"></script>
+</polymer-element>
