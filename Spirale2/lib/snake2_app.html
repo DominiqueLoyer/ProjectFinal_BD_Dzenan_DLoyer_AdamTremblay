@@ -6,18 +6,26 @@
 <!-- import polymer-element's definition -->
 <link rel="import" href="../../packages/polymer/polymer.html">
 
-
-<polymer-element name="snake2-app">
-  <template>
-     <style>
+<style>
        :host {
         display: block;
       }
-      :host-context(.A1){
-        background-color: #fcfcfc;
-        }
+      
+      cell::shadow td {
+        height: 10px;
+        width:10px;
+        border: 0;
+        background-color: "blue";      
+      }
+
+      :host.h1{
+        color:red;
+      }      
     </style>
     
+<polymer-element name="snake2-app">
+  <template>
+
     <h1>Snake version 1</h1>
 
     <p>Yeah, here we go!!</p>
@@ -29,17 +37,29 @@
     </div>
     
     <!--need to do a template with that-->
+    <grid></grid>
     
-    <table id="playground">
-      <tr id='A'>
-        <td id='A1' class='A1'>yo</td><td id='A2'></td><td id='A3'></td><td id='A4'></td><td id='A5'></td><td id='A6'></td><td id='A7'></td><td id='A8'></td><td id='A9'></td><td id='A10'></td>
-      </tr>
-      <tr id='B'>
-        <td id='B1'></td><td id='B2'></td><td id='B3'>b3</td><td id='B4'></td><td id='B5'></td><td id='B6'></td><td id='B7'></td><td id='B8'></td><td id='B9'></td><td id='B10'></td>
-      </tr>
-    </table>
-
     
   </template>  
   <script type="application/dart" src="snake2_app.dart"></script>
+</polymer-element>
+
+<polymer-element name="play-grid">
+<template>
+    
+    <table id="grid">
+      <tr template repeat="{{full_grid}}">
+        <td style="backgroundColor:{{td_bg_color}}">{{C0}}</td>
+        <td style="backgroundColor:{{td_bg_color}}">{{C1}}</td>
+        <td style="backgroundColor:{{td_bg_color}}">{{C2}}</td>
+        <td style="backgroundColor:{{td_bg_color}}">{{C3}}</td>
+        <td style="backgroundColor:{{td_bg_color}}">{{C4}}</td>
+        <td style="backgroundColor:{{td_bg_color}}">{{C5}}</td>
+        <td style="backgroundColor:{{td_bg_color}}">{{C6}}</td>
+        <td style="backgroundColor:{{td_bg_color}}">{{C7}}</td>
+        <td style="backgroundColor:{{td_bg_color}}">{{C8}}</td>
+        <td style="backgroundColor:{{td_bg_color}}">{{C9}}</td>     
+      </tr>
+    </table>  
+  </template>  
 </polymer-element>

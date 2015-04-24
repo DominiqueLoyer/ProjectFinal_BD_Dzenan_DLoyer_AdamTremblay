@@ -13,3 +13,5 @@
 -- Mettre deux boutons pour changer la couleur
 
 --- Preparation du HTML pour la spirale 2 qui aura comme objectif creer le template HTML de base
+
+--- Echec de la conversion de la spirale 2. L'utilisation d'elements de table ne semble pas fonctionner... les attributs de style ne passent pas bien avec polymer
