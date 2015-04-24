@@ -37,29 +37,22 @@
     </div>
     
     <!--need to do a template with that-->
-    <grid></grid>
-    
-    
+    <table id="grid">
+      <tr template repeat="{{play_grid}}">
+        <td style="backgroundColor:{{td_bg_color}}"></td>
+        <td style="backgroundColor:{{td_bg_color}}"></td>
+        <td style="backgroundColor:{{td_bg_color}}"></td>
+        <td style="backgroundColor:{{td_bg_color}}"></td>
+        <td style="backgroundColor:{{td_bg_color}}"></td>
+        <td style="backgroundColor:{{td_bg_color}}"></td>
+        <td style="backgroundColor:{{td_bg_color}}"></td>
+        <td style="backgroundColor:{{td_bg_color}}"></td>
+        <td style="backgroundColor:{{td_bg_color}}"></td>
+        <td style="backgroundColor:{{td_bg_color}}"></td>     
+      </tr>
+    </table>  
+      
   </template>  
   <script type="application/dart" src="snake2_app.dart"></script>
 </polymer-element>
 
-<polymer-element name="play-grid">
-<template>
-    
-    <table id="grid">
-      <tr template repeat="{{full_grid}}">
-        <td style="backgroundColor:{{td_bg_color}}">{{C0}}</td>
-        <td style="backgroundColor:{{td_bg_color}}">{{C1}}</td>
-        <td style="backgroundColor:{{td_bg_color}}">{{C2}}</td>
-        <td style="backgroundColor:{{td_bg_color}}">{{C3}}</td>
-        <td style="backgroundColor:{{td_bg_color}}">{{C4}}</td>
-        <td style="backgroundColor:{{td_bg_color}}">{{C5}}</td>
-        <td style="backgroundColor:{{td_bg_color}}">{{C6}}</td>
-        <td style="backgroundColor:{{td_bg_color}}">{{C7}}</td>
-        <td style="backgroundColor:{{td_bg_color}}">{{C8}}</td>
-        <td style="backgroundColor:{{td_bg_color}}">{{C9}}</td>     
-      </tr>
-    </table>  
-  </template>  
-</polymer-element>
