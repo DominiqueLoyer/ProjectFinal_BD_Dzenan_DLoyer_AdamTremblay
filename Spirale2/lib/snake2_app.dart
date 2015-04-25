@@ -7,13 +7,12 @@ import 'package:polymer/polymer.dart';
 
 ///Global variables
 
- 
+String grid_color="grey"; 
 
 
 /// Our Polymer `<snake2-app>` element.
 @CustomTag('snake2-app')
 class Snake2App extends PolymerElement {
-   @observable String td_bg_color = 'white';
    static Map play_grid = new Map();
    static Map snake_id = new Map();
    @observable List grid_corners = new List();
@@ -49,7 +48,7 @@ class Snake2App extends PolymerElement {
     var new_apple_id=-1;
     new_apple_id = rng.nextInt(number_of_cells_in_grid-1);
     for(x=0;x<100;x++){
-      if((play_grid[new_apple_id]=='grey')){
+      if((play_grid[new_apple_id]==grid_color)){
         play_grid[new_apple_id]='red';
         x=101;
       }else{
@@ -64,7 +63,18 @@ class Snake2App extends PolymerElement {
   /**for changing the whole grid**/
   void switchColors(MouseEvent event){
     /**change the color of the grid on mouse click**/
-    
+    var x=0;
+    for(x=0;x<100;x++){
+      if ((play_grid[x]!='red')&&(play_grid[x]!='green')){
+        if (play_grid[x]=='grey'){
+          play_grid[x]='brown';
+          grid_color='brown';
+        }else{
+          play_grid[x]='grey';
+          grid_color='grey';
+        }
+      }
+    }
     main_grid();
     
   }  
@@ -73,6 +83,7 @@ class Snake2App extends PolymerElement {
   /**for reset of the grid**/
     void reset(MouseEvent event){
       init();
+      main_grid();
     }
   
   
@@ -105,45 +116,231 @@ class Snake2App extends PolymerElement {
     print(grid_corners);
     
     /**Define the sides**/
-    for (x=0;x<(root_z-2);x++){
-      grid_top.add(top_left+x+1);
+    for (x=0;x<(root_z);x++){
+      grid_top.add(top_left+x);
     }   
-    for (x=0;x<(root_z-2);x++){
-      grid_left.add(top_left+root_z+(x*root_z));
+    for (x=0;x<(root_z);x++){
+      grid_left.add(top_left+(x*root_z));
     }
-    for (x=0;x<(root_z-2);x++){
-      grid_right.add(top_right+root_z+(x*root_z));
+    for (x=0;x<(root_z);x++){
+      grid_right.add(top_right+(x*root_z));
     }
-    for (x=0;x<(root_z-2);x++){
-      grid_bottom.add(bottom_left+x+1);
+    for (x=0;x<(root_z);x++){
+      grid_bottom.add(bottom_left+x);
     }
-    print(grid_top);
+    print('top $grid_top');
     print(grid_left);
     print(grid_right);
     print(grid_bottom);
+    
+    /**load the play grid colors**/
+        for (x=0;x<z;x++){
+          play_grid [x] = grid_color;        
+        }
     
     /**Define the snake: randomizer + result-1**/
     var rng = new Random();
     var head_id = rng.nextInt(z-10);  /**to avoid being in the last row**/
     head_id = head_id+5;              /**to avoid being too close to cell #0**/    
     var tail_id =head_id-1;
-    snake_id = {'head': head_id, 'tail': tail_id };
+    snake_id = {0: head_id, 1: tail_id };
+    play_grid[head_id]="green";
+    play_grid[tail_id]="green";
     print(snake_id);
    
+    newApple();
     
     
-    /**load the play grid colors**/
-    for (x=0;x<z;x++){
-      play_grid [x] = 'grey';        
-    }
     print(play_grid);      
   }
 
+  void death(){
+    var x=0;
+        for(x=0;x<100;x++){
+          if ((play_grid[x]!='red')&&(play_grid[x]!='green')){           
+              play_grid[x]='white';
+          }
+        }
+        main_grid();
+        /**TODO: add game over message and show how long the snake**/
+    
+  }
+
+  
+/**Pour faire grandir le serpent**/  
+  void growSnake(var direction){
+    switch (direction){
+      case 'up':       
+        grow(-10);
+        return;
+      case 'down':
+        grow(10);
+        return;
+      case 'left':
+        grow(-1);
+        return;
+      case 'right':
+        grow(1);
+        return;
+    }
+  }
+  
+void grow(int growth_rate){
+  var length=snake_id.length;  
+  var x=0;
+  
+  for(x=length;x>0;x--){
+  snake_id[x]=snake_id[x-1]; 
+  }
+  snake_id[0]=snake_id[0]+growth_rate; 
+  for(x=0;x<length;x++){
+    play_grid[snake_id[x]]='green';
+  }
+}  
+  
+/**Pour faire bouger le serpent**/  
+  void moveSnake(var direction){  
+    switch (direction){
+        case 'up':
+          move(-10);
+          return;
+        case 'down':
+          move(10);
+          return;
+        case 'left':
+          move(-1);
+          return;
+        case 'right':
+          move(1);
+          return;
+      }
+    }
+  
+  void move(int movement){
+    var length=snake_id.length;  
+    var tail=0;
+    var x=0;
+    if(length==2){
+       play_grid[snake_id[1]]=grid_color;
+       snake_id[1]=snake_id[0];
+       snake_id[0]=snake_id[0]+movement;           
+     }else{
+       x=length;
+       tail=snake_id[x-1];
+       play_grid[tail]=grid_color;
+       for(x=length-1;x>0;x--){
+       snake_id[x]=snake_id[x-1]; 
+       }
+       snake_id[0]=snake_id[0]+movement; 
+     }
+     for(x=0;x<length;x++){
+       play_grid[snake_id[x]]='green';
+     }
+    
+  }
+  
+  
+  /**for going up**/
+  void moveUp (){
+    var h =0;
+    h= snake_id[0];
+    if ((h-10>=0)){
+      if((play_grid[h-10]==grid_color)){ 
+        moveSnake('up');
+      }
+      else if(play_grid[h-10]=='red'){
+        growSnake('up');
+        newApple();
+        main_grid();
+      }else if ((play_grid[h-10]=='green')){
+        death();
+      }
+    }else{
+      death();
+    }   
+    main_grid();
+  
+  }
+  
+  /**for going left**/
+  void moveLeft (){
+    var h =0;
+    var x=0;
+    var leftBorder=false;
+    for (x=0;x<grid_left.length;x++) {
+      if (snake_id[0]==grid_left[x]){
+        leftBorder=true; 
+        x=101;
+      }
+    }
+    h= snake_id[0];
+    if (leftBorder==false){
+      if((play_grid[h-1]==grid_color)){
+        moveSnake('left');
+      }else if(play_grid[h-1]=='red'){
+        growSnake('left');
+        newApple();
+        main_grid();
+      }else if ((play_grid[h-1]=='green')){
+        death();
+      }
+    }else{    
+      death();
+    }
+    main_grid();
+  }
+  
+  /**for going right**/
+  void moveRight (){
+    var h =0;
+    var x=0;
+    var rightBorder=false;
+    for (x=0;x<grid_right.length;x++) {
+      if (snake_id[0]==grid_right[x]){
+        rightBorder=true; 
+        x=101;
+      }
+    }
+    h= snake_id[0];
+    if (rightBorder==false){
+      if((play_grid[h+1]==grid_color)){
+        moveSnake('right');
+      }else if(play_grid[h+1]=='red'){
+        growSnake('right');
+        newApple();
+        main_grid();
+      }else if ((play_grid[h+1]=='green')){
+        death();
+      }
+    }else{    
+      death();
+    }
+    main_grid();
+  }
+  
+  /**for going down**/
+  void moveDown (){
+    var h =0;
+    h= snake_id[0];
+    if ((h+10>=100)){
+      death();
+    }else if((play_grid[h+10]==grid_color)){ 
+      moveSnake('down');
+    }
+    else if(play_grid[h+10]=='red'){
+      growSnake('down');
+      newApple();
+      main_grid();
+    }else if ((play_grid[h+10]=='green')){
+      death();  
+    }   
+    main_grid();
+  }
  
 }
  
 
-/**Table Setup test**/
+/**Table Setup **/
 //main function.
 //late declaration for the div_grid div in the template. Put here for easily find it again
 
