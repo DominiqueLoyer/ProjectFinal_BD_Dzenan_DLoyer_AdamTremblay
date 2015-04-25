@@ -252,7 +252,7 @@ void grow(int growth_rate){
         growSnake('up');
         newApple();
         main_grid();
-      }else if ((play_grid[h-10]=='green')){
+      }else if ((play_grid[h-10]=='green')&&(play_grid[h-10]!=snake_id[1])){
         death();
       }
     }else{
@@ -281,7 +281,7 @@ void grow(int growth_rate){
         growSnake('left');
         newApple();
         main_grid();
-      }else if ((play_grid[h-1]=='green')){
+      }else if ((play_grid[h-1]=='green')&&(play_grid[h-1]!=snake_id[1])){
         death();
       }
     }else{    
@@ -309,7 +309,7 @@ void grow(int growth_rate){
         growSnake('right');
         newApple();
         main_grid();
-      }else if ((play_grid[h+1]=='green')){
+      }else if ((play_grid[h+1]=='green')&&(play_grid[h+1]!=snake_id[1])){
         death();
       }
     }else{    
@@ -331,7 +331,7 @@ void grow(int growth_rate){
       growSnake('down');
       newApple();
       main_grid();
-    }else if ((play_grid[h+10]=='green')){
+    }else if ((play_grid[h+10]=='green')&&(play_grid[h+10]!=snake_id[1])){
       death();  
     }   
     main_grid();
