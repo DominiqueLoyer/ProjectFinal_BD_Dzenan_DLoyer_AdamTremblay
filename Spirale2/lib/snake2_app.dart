@@ -6,7 +6,7 @@ import 'dart:math';
 import 'package:polymer/polymer.dart';
 
 ///Global variables
- int colorChange = 0xFFF;
+
  
 
 
@@ -36,16 +36,36 @@ class Snake2App extends PolymerElement {
   
 
   /**for changing color of one square**/
-  void changeColor(MouseEvent event) {
+  void moreApples(MouseEvent event) {
     /**change the color of the grid on mouse click**/
-   
+    newApple();
+    //print(play_grid);
+    main_grid();
   }
 
+  void newApple(){
+    var rng = new Random();
+    var x =0;
+    var new_apple_id=-1;
+    new_apple_id = rng.nextInt(number_of_cells_in_grid-1);
+    for(x=0;x<100;x++){
+      if((play_grid[new_apple_id]=='grey')){
+        play_grid[new_apple_id]='red';
+        x=101;
+      }else{
+        new_apple_id = rng.nextInt(number_of_cells_in_grid-1);
+      }
+        
+    }
+      
+    //print(new_apple_id);
+  }
 
   /**for changing the whole grid**/
   void switchColors(MouseEvent event){
     /**change the color of the grid on mouse click**/
     
+    main_grid();
     
   }  
   
@@ -125,42 +145,55 @@ class Snake2App extends PolymerElement {
 
 /**Table Setup test**/
 //main function.
+//late declaration for the div_grid div in the template. Put here for easily find it again
+
 
 void main_grid() {
+   
   Grid grid = new Grid();
-
-  //add the grid - this will cause the grid table element to be built and added to the DOM
-  addView(grid);
+  //add the grid - this will cause the grid table element to be built and added to the DOM 
+  DivElement _div_grid = new DivElement();
+  _div_grid = querySelector ('#view-grid-container');
+  addView(grid,_div_grid);
 }
+
+
+
+
 //A list of elements
 abstract class View {
 List<Element> elements;
 }
 
+
+
 //a generic table that can bind to some data. 
-class Grid implements View { 
+class Grid implements View{ 
+
+  
   TableElement _table;
   List<String> fields;
   List cellItems = new List();
   Map cellMap = new Map();
   
-  Grid() {
+  
+  Grid(){
     _table = new Element.tag("table");
-    _table.style.borderStyle="solid";
-    _table.style.borderWidth="2";
-    _table.style.borderSpacing="0";
-    _table.style.borderColor="black";
-    _table.style.backgroundColor="red";
-    
-    fields = new List<String>();
+        _table.style.borderStyle="solid";
+        _table.style.borderWidth="2";
+        _table.style.borderSpacing="0";
+        _table.style.borderColor="black";
+        _table.style.backgroundColor="red"; 
   } 
   
+ 
   //returns a list of elements to be added to the DOM.
   //implements View interface
-  List<Element> get elements {
+  List<Element> get elements { 
     List<Element> result = new List<Element>(); 
     _makeTable();   
     result.add(_table);    
+    
     return result;
   }
 
@@ -174,8 +207,8 @@ class Grid implements View {
     var cell_id = 0;
     double root_cellMap_length = 0.0;
     cellMap = Snake2App.play_grid;
-    print('cellMap');
-    print(cellMap);
+    //print('cellMap');
+    //print(cellMap);
     cellMap_length = cellMap.length;
     root_cellMap_length = sqrt(cellMap_length);
     z = root_cellMap_length;
@@ -186,9 +219,9 @@ class Grid implements View {
         TableCellElement cell = new Element.tag("td");
         
         cell_id = x*10+c;
-        print(cell_id);
+        //print(cell_id);
         cell.style.backgroundColor = cellMap[cell_id];
-        print(cellMap[cell_id]);
+        //print(cellMap[cell_id]);
         cell.style.height = "15px";
         cell.style.width = "15px";
         cell.style.borderStyle="none";
@@ -206,6 +239,9 @@ class Grid implements View {
 void addView(View view, [Element parent]) {
   if (parent == null) {
     parent = document.body;
+  }
+  if (parent != null){    
+    parent.nodes.clear();
   }
   parent.nodes.addAll(view.elements);
 }

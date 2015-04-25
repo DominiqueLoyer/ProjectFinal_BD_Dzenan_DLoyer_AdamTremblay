@@ -14,4 +14,19 @@
 
 --- Preparation du HTML pour la spirale 2 qui aura comme objectif creer le template HTML de base
 
---- Echec de la conversion de la spirale 2. L'utilisation d'elements de table ne semble pas fonctionner... les attributs de style ne passent pas bien avec polymer
+
+--- Spirale 2
+
+--- Success de la gestion de parametres et classe polymer. 
+
+--- Gestion du cadre de limite de la grille de jeu: ok
+
+--- Gestion de la grille de jeu: ok
+
+--- Gestion du bouton de reenitialisation: ok
+
+--- Creation du serpent de depart avec origine generee au hazar: ok
+
+--- Utilisation des element TableElements pour generer la table directement dans le code de Dart et le renvoyer dans le HTML
+
+

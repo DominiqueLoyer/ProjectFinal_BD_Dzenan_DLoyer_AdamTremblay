@@ -6,43 +6,43 @@
 <!-- import polymer-element's definition -->
 <link rel="import" href="../../packages/polymer/polymer.html">
 
-<style>
-       :host {
-        display: block;
-      }
-      
-      cell::shadow td {
-        height: 10px;
-        width:10px;
-        border: 0;
-        background-color: "blue";      
-      }
 
-      :host.h1{
-        color:red;
-      }      
-    </style>
-    
+
 <polymer-element name="snake2-app">
   <template>
-
-    <h1>Snake version 0.1</h1>
-
-    <p>Yeah, here we go!!</p>
-
+    <link rel="stylesheet" href="../styles.css">
     <div id='container_id'>
-      <button on-click="{{changeColor}}" class="button">Change to Blue!</button>
-      <button on-click="{{switchColors}}" class="button">Switch!!</button>
+      <button on-click="{{moreApples}}" class="button">More apples!</button>
+      <button on-click="{{switchColors}}" class="button">Switch grid color!!</button>
       <button on-click="{{reset}}" class="button">Reset!!</button>
     </div>
     
+    <div id='controls_id'>
+      <div >
+        <div id='control_top_left'></div>
+        <div id='control_top_middle' on-click="{{moveUp}}">HAUT</div>
+        <div id='control_top_right'></div> 
+      </div>
+      <div>
+        <div id='control_mid_left' on-click="{{moveLeft}}">GAUCHE</div>
+        <div id='control_mid_middle' ></div>
+        <div id='control_mid_right' on-click="{{moveRight}}">DROITE</div> 
+      </div>
+      <div>
+        <div id='control_low_left'></div>
+        <div id='control_low_middle' on-click="{{moveDown}}">BAS</div>
+        <div id='control_low_right'></div> 
+      </div>
+    </div>
     
-    </template> 
-    
-    
-     
+  </template> 
+ 
+  
+  
   <script type="application/dart" src="snake2_app.dart"></script>
+
 </polymer-element>
+
 
 
  
