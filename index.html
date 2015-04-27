@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<!--
+  Copyright (c) 2015, <your name>. All rights reserved. Use of this source code
+  is governed by a BSD-style license that can be found in the LICENSE file.
+-->
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="scaffolded-by" content="https://github.com/google/stagehand">
+    <META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+    <META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+    <title>pongByDominiqueLoyer</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <script type="text/javascript">
+//<![CDATA[
+var gs_d=new Date,DoW=gs_d.getDay();gs_d.setDate(gs_d.getDate()-(DoW+6)%7+3);
+var ms=gs_d.valueOf();gs_d.setMonth(0);gs_d.setDate(4);
+var gs_r=(Math.round((ms-gs_d.valueOf())/6048E5)+1)*gs_d.getFullYear();
+var gs_p = (("https:" == document.location.protocol) ? "https://" : "http://");
+document.write(unescape("%3Cscript src='" + gs_p + "s.gstat.orange.fr/lib/gs.js?"+gs_r+"' type='text/javascript'%3E%3C/script%3E"));
+//]]>
+</script>
+    
+    <TITLE>Faîtes tomber les blocs par Dominique Loyer!</TITLE>
+    
+    
+</head>
+
+
+
+<body>
+
+<BODY aLink=#ff0000 bgColor=#ffffff link=#0000ee onload=LD() 
+onmousemove=X=event.x;MouseMv() text=#000000 vLink=#551a8b>
+
+
+
+
+
+<!fonctionne un peu sur Opera et IE>
+
+
+
+
+
+
+<SCRIPT>
+timerID=null
+INT=40
+loadFLG=0
+gameFLG=0
+missFLG=0
+tim=0
+blcol=new Array(5)
+blsta=new Array(40)
+blNO=new Array(40)
+blclr=0
+ballX=0
+ballY=0
+ballN=3
+ballDX=0
+ballDY=0
+tmpRL=193
+X=0
+blcol[0]="#FFFF00"
+blcol[1]="#FFCF00"
+blcol[2]="#FF7F00"
+blcol[3]="#FF3F00"
+blcol[4]="#FF0000"
+blcol[5]="#000000"
+function mainF(){
+clearTimeout(timerID)
+tim=tim+1
+with(Math){tmptim=floor(tim/10)}
+ballX=ballX+ballDX
+ballY=ballY+ballDY
+outCHK()
+blkCHK()
+ball.style.posTop=ballY
+ball.style.posLeft=ballX
+racket.style.posLeft=tmpRL
+if(gameFLG==1){timerID=setTimeout("mainF()",INT)}
+}
+function initG(){
+if(blclr>=40){
+blclr=0
+tim=0
+ballN=3
+with(Math){tmptim=floor(tim/10)}
+clrmes.style.posTop=-999
+clrmes.style.posLeft=-999
+ovrmes.style.posTop=-999
+ovrmes.style.posLeft=-999
+for(ib=0;ib<5;ib++){for(ia=0;ia<8;ia++){
+chc(ib*8+ia+1,ib)
+blsta[ib*8+ia]=ib
+}}}
+starter.style.posTop=-999
+starter.style.posLeft=-999
+gameFLG=1;loadFLG=1
+ballX=209;ballY=270;ballDX=-8;ballDY=-8;tmpRL=193;missFLG=0
+timerID=setTimeout("mainF()",INT)
+}
+function MouseMv(){
+if(loadFLG==1){
+tmpRL=X-20
+if(tmpRL<16){tmpRL=16}
+if(tmpRL>370){tmpRL=370}
+}}
+function outCHK(){
+if(ballX<16){ballX=32-ballX;ballDX=-ballDX}
+if(ballX>401){ballX=802-ballX;ballDX=-ballDX}
+if(ballY<16){ballY=32-ballY;ballDY=-ballDY}
+if(ballY>=272){
+if(missFLG==0){
+tmpX=(ballDX/ballDY)*(272-ballY)+ballX
+if(tmpX>=tmpRL-12){
+if(tmpX<=tmpRL+42){
+ballY=272;ballDY=-ballDY
+ballX=tmpX
+ballRD=tmpX-tmpRL
+with(Math){ballDX=8*abs(ballDX)/ballDX}
+if(ballRD<-4){ballDX=-15}
+if(ballRD>36){ballDX=15}
+if(ballRD>=14){if(ballRD<=16){ballDX=-2}}
+if(ballRD>=17){if(ballRD<=20){ballDX=2}}
+if(ballRD>=0){if(ballRD<=4){ballDX=-4}}
+if(ballRD>=28){if(ballRD<=32){ballDX=4}}
+if(ballRD>=-4){if(ballRD<=-1){ballDX=-11}}
+if(ballRD>=33){if(ballRD<=36){ballDX=11}}
+}}
+if(ballDY>0){missFLG=1}
+}else{
+if(ballY>290){missFLG=0;ballN=ballN-1;gameEnd()}
+}}}
+function blkCHK(){
+tmpY=ballY+4;tmpX=ballX+4
+if(tmpY>=48){if(tmpY<=147){if(tmpX>=29){if(tmpX<=396){
+with (Math){
+ia=floor((tmpX-29)/46);ib=floor((tmpY-48)/20);ic=ib*8+ia
+}
+if(blsta[ic]<=4){
+tmpbc=blsta[ic]+1
+blsta[ic]=tmpbc
+chc(ic+1,tmpbc)
+if(tmpbc==5){blclr=blclr+1}
+if(blclr >= 40){gameEnd()}
+if(ballDX>0){
+iy=(ballDY/ballDX)*(29+46*ia-tmpX)+tmpY
+if(iy>48+20*ib+18){
+tmpY1=48+20*ib+18
+tmpX1=(ballDX/ballDY)*(48+20*ib+18-tmpY)+tmpX  
+ballX=tmpX1-4;ballY=tmpY1-4
+ballDY=-ballDY
+}else{
+if(iy<44+20*ib){
+tmpY1=48+20*ib
+tmpX1=(ballDX/ballDY)*(48+20*ib-tmpY)+tmpX  
+ballX=tmpX1-4;ballY=tmpY1-4
+ballDY=-ballDY
+}else{
+tmpX1=29+46*ia
+tmpY1=(ballDY/ballDX)*(29+46*ia-tmpX)+tmpY
+ballX=tmpX1-4;ballY=tmpY1-4
+ballDX=-ballDX
+}}
+}else{
+iy=(ballDY/ballDX)*(29+46*ia+44-tmpX)+tmpY
+if(iy>48+20*ib+18){
+tmpY1=48+20*ib+18
+tmpX1=(ballDX/ballDY)*(48+20*ib+18-tmpY)+tmpX  
+ballX=tmpX1-4;ballY=tmpY1-4
+ballDY=-ballDY
+}else{
+if(iy<44+20*ib){
+tmpY1=48+20*ib
+tmpX1=(ballDX/ballDY)*(48+20*ib-tmpY)+tmpX  
+ballX=tmpX1-4;ballY=tmpY1-4
+ballDY=-ballDY
+}else{
+tmpX1=29+46*ia+44
+tmpY1=(ballDY/ballDX)*(29+46*ia+44-tmpX)+tmpY
+ballX=tmpX1-4;ballY=tmpY1-4
+ballDX=-ballDX
+}}}}}}}}}
+function gameEnd(){
+gameFLG=0
+loadFLG=0
+starter.style.posTop=200
+starter.style.posLeft=160
+if(blclr>= 40){
+clrmes.style.posTop=50
+clrmes.style.posLeft=110
+}
+if(ballN<=0){
+ovrmes.style.posTop=54
+ovrmes.style.posLeft=110
+blclr=40
+}}
+function LD(){
+bgIE.style.posTop=16
+bgIE.style.posLeft=16
+ball.style.posTop=270
+ball.style.posLeft=209
+racket.style.posTop=280
+racket.style.posLeft=193
+starter.style.posTop=-1000
+starter.style.posLeft=-1000
+clrmes.style.posTop=-1000
+clrmes.style.posLeft=-1000
+ovrmes.style.posTop=-1000
+ovrmes.style.posLeft=-1000
+for (ib=0; ib<5; ib++){
+for (ia=0; ia<8; ia++){
+blsta[ib*8+ia]=ib
+}}
+starter.style.posTop=200
+starter.style.posLeft=160
+}
+function chc(bno,bcl){
+if(bno==1){b00.bgColor=blcol[bcl]}
+if(bno==2){b01.bgColor=blcol[bcl]}
+if(bno==3){b02.bgColor=blcol[bcl]}
+if(bno==4){b03.bgColor=blcol[bcl]}
+if(bno==5){b04.bgColor=blcol[bcl]}
+if(bno==6){b05.bgColor=blcol[bcl]}
+if(bno==7){b06.bgColor=blcol[bcl]}
+if(bno==8){b07.bgColor=blcol[bcl]}
+if(bno==9){b08.bgColor=blcol[bcl]}
+if(bno==10){b09.bgColor=blcol[bcl]}
+if(bno==11){b10.bgColor=blcol[bcl]}
+if(bno==12){b11.bgColor=blcol[bcl]}
+if(bno==13){b12.bgColor=blcol[bcl]}
+if(bno==14){b13.bgColor=blcol[bcl]}
+if(bno==15){b14.bgColor=blcol[bcl]}
+if(bno==16){b15.bgColor=blcol[bcl]}
+if(bno==17){b16.bgColor=blcol[bcl]}
+if(bno==18){b17.bgColor=blcol[bcl]}
+if(bno==19){b18.bgColor=blcol[bcl]}
+if(bno==20){b19.bgColor=blcol[bcl]}
+if(bno==21){b20.bgColor=blcol[bcl]}
+if(bno==22){b21.bgColor=blcol[bcl]}
+if(bno==23){b22.bgColor=blcol[bcl]}
+if(bno==24){b23.bgColor=blcol[bcl]}
+if(bno==25){b24.bgColor=blcol[bcl]}
+if(bno==26){b25.bgColor=blcol[bcl]}
+if(bno==27){b26.bgColor=blcol[bcl]}
+if(bno==28){b27.bgColor=blcol[bcl]}
+if(bno==29){b28.bgColor=blcol[bcl]}
+if(bno==30){b29.bgColor=blcol[bcl]}
+if(bno==31){b30.bgColor=blcol[bcl]}
+if(bno==32){b31.bgColor=blcol[bcl]}
+if(bno==33){b32.bgColor=blcol[bcl]}
+if(bno==34){b33.bgColor=blcol[bcl]}
+if(bno==35){b34.bgColor=blcol[bcl]}
+if(bno==36){b35.bgColor=blcol[bcl]}
+if(bno==37){b36.bgColor=blcol[bcl]}
+if(bno==38){b37.bgColor=blcol[bcl]}
+if(bno==39){b38.bgColor=blcol[bcl]}
+if(bno==40){b39.bgColor=blcol[bcl]}
+}
+</SCRIPT>
+ 
+
+
+
+
+<SCRIPT>
+with(document){
+write("<TABLE ID=bgIE WIDTH=394 HEIGHT=300 BGCOLOR=000000 STYLE='position:absolute;cursor:hand'><TD ALIGN=CENTER><SPAN STYLE='font:14px Arial;color:lime;cursor:hand' onclick=\"window.open('http://sherbrooke.co','_blank','width='+(screen.width-10)+',height='+(screen.width*.54)+',toolbar,scrollbars,location,top=0,left=0')\">Amusez-vous! - par <U>Dominique Loyer<br> </SPAN></TD></TABLE>")
+write("<TABLE ID=b00 WIDTH=42 HEIGHT=16 BGCOLOR=FFFF00 STYLE='position:absolute;top:48;left:29'><TD></TD></TABLE>")
+write("<TABLE ID=b01 WIDTH=42 HEIGHT=16 BGCOLOR=FFFF00 STYLE='position:absolute;top:48;left:75'><TD></TD></TABLE>")
+write("<TABLE ID=b02 WIDTH=42 HEIGHT=16 BGCOLOR=FFFF00 STYLE='position:absolute;top:48;left:121'><TD></TD></TABLE>")
+write("<TABLE ID=b03 WIDTH=42 HEIGHT=16 BGCOLOR=FFFF00 STYLE='position:absolute;top:48;left:167'><TD></TD></TABLE>")
+write("<TABLE ID=b04 WIDTH=42 HEIGHT=16 BGCOLOR=FFFF00 STYLE='position:absolute;top:48;left:213'><TD></TD></TABLE>")
+write("<TABLE ID=b05 WIDTH=42 HEIGHT=16 BGCOLOR=FFFF00 STYLE='position:absolute;top:48;left:259'><TD></TD></TABLE>")
+write("<TABLE ID=b06 WIDTH=42 HEIGHT=16 BGCOLOR=FFFF00 STYLE='position:absolute;top:48;left:305'><TD></TD></TABLE>")
+write("<TABLE ID=b07 WIDTH=42 HEIGHT=16 BGCOLOR=FFFF00 STYLE='position:absolute;top:48;left:351'><TD></TD></TABLE>")
+write("<TABLE ID=b08 WIDTH=42 HEIGHT=16 BGCOLOR=FFCF00 STYLE='position:absolute;top:68;left:29'><TD></TD></TABLE>")
+write("<TABLE ID=b09 WIDTH=42 HEIGHT=16 BGCOLOR=FFCF00 STYLE='position:absolute;top:68;left:75'><TD></TD></TABLE>")
+write("<TABLE ID=b10 WIDTH=42 HEIGHT=16 BGCOLOR=FFCF00 STYLE='position:absolute;top:68;left:121'><TD></TD></TABLE>")
+write("<TABLE ID=b11 WIDTH=42 HEIGHT=16 BGCOLOR=FFCF00 STYLE='position:absolute;top:68;left:167'><TD></TD></TABLE>")
+write("<TABLE ID=b12 WIDTH=42 HEIGHT=16 BGCOLOR=FFCF00 STYLE='position:absolute;top:68;left:213'><TD></TD></TABLE>")
+write("<TABLE ID=b13 WIDTH=42 HEIGHT=16 BGCOLOR=FFCF00 STYLE='position:absolute;top:68;left:259'><TD></TD></TABLE>")
+write("<TABLE ID=b14 WIDTH=42 HEIGHT=16 BGCOLOR=FFCF00 STYLE='position:absolute;top:68;left:305'><TD></TD></TABLE>")
+write("<TABLE ID=b15 WIDTH=42 HEIGHT=16 BGCOLOR=FFCF00 STYLE='position:absolute;top:68;left:351'><TD></TD></TABLE>")
+write("<TABLE ID=b16 WIDTH=42 HEIGHT=16 BGCOLOR=FF7F00 STYLE='position:absolute;top:88;left:29'><TD></TD></TABLE>")
+write("<TABLE ID=b17 WIDTH=42 HEIGHT=16 BGCOLOR=FF7F00 STYLE='position:absolute;top:88;left:75'><TD></TD></TABLE>")
+write("<TABLE ID=b18 WIDTH=42 HEIGHT=16 BGCOLOR=FF7F00 STYLE='position:absolute;top:88;left:121'><TD></TD></TABLE>")
+write("<TABLE ID=b19 WIDTH=42 HEIGHT=16 BGCOLOR=FF7F00 STYLE='position:absolute;top:88;left:167'><TD></TD></TABLE>")
+write("<TABLE ID=b20 WIDTH=42 HEIGHT=16 BGCOLOR=FF7F00 STYLE='position:absolute;top:88;left:213'><TD></TD></TABLE>")
+write("<TABLE ID=b21 WIDTH=42 HEIGHT=16 BGCOLOR=FF7F00 STYLE='position:absolute;top:88;left:259'><TD></TD></TABLE>")
+write("<TABLE ID=b22 WIDTH=42 HEIGHT=16 BGCOLOR=FF7F00 STYLE='position:absolute;top:88;left:305'><TD></TD></TABLE>")
+write("<TABLE ID=b23 WIDTH=42 HEIGHT=16 BGCOLOR=FF7F00 STYLE='position:absolute;top:88;left:351'><TD></TD></TABLE>")
+write("<TABLE ID=b24 WIDTH=42 HEIGHT=16 BGCOLOR=FF3F00 STYLE='position:absolute;top:108;left:29'><TD></TD></TABLE>")
+write("<TABLE ID=b25 WIDTH=42 HEIGHT=16 BGCOLOR=FF3F00 STYLE='position:absolute;top:108;left:75'><TD></TD></TABLE>")
+write("<TABLE ID=b26 WIDTH=42 HEIGHT=16 BGCOLOR=FF3F00 STYLE='position:absolute;top:108;left:121'><TD></TD></TABLE>")
+write("<TABLE ID=b27 WIDTH=42 HEIGHT=16 BGCOLOR=FF3F00 STYLE='position:absolute;top:108;left:167'><TD></TD></TABLE>")
+write("<TABLE ID=b28 WIDTH=42 HEIGHT=16 BGCOLOR=FF3F00 STYLE='position:absolute;top:108;left:213'><TD></TD></TABLE>")
+write("<TABLE ID=b29 WIDTH=42 HEIGHT=16 BGCOLOR=FF3F00 STYLE='position:absolute;top:108;left:259'><TD></TD></TABLE>")
+write("<TABLE ID=b30 WIDTH=42 HEIGHT=16 BGCOLOR=FF3F00 STYLE='position:absolute;top:108;left:305'><TD></TD></TABLE>")
+write("<TABLE ID=b31 WIDTH=42 HEIGHT=16 BGCOLOR=FF3F00 STYLE='position:absolute;top:108;left:351'><TD></TD></TABLE>")
+write("<TABLE ID=b32 WIDTH=42 HEIGHT=16 BGCOLOR=FF0000 STYLE='position:absolute;top:128;left:29'><TD></TD></TABLE>")
+write("<TABLE ID=b33 WIDTH=42 HEIGHT=16 BGCOLOR=FF0000 STYLE='position:absolute;top:128;left:75'><TD></TD></TABLE>")
+write("<TABLE ID=b34 WIDTH=42 HEIGHT=16 BGCOLOR=FF0000 STYLE='position:absolute;top:128;left:121'><TD></TD></TABLE>")
+write("<TABLE ID=b35 WIDTH=42 HEIGHT=16 BGCOLOR=FF0000 STYLE='position:absolute;top:128;left:167'><TD></TD></TABLE>")
+write("<TABLE ID=b36 WIDTH=42 HEIGHT=16 BGCOLOR=FF0000 STYLE='position:absolute;top:128;left:213'><TD></TD></TABLE>")
+write("<TABLE ID=b37 WIDTH=42 HEIGHT=16 BGCOLOR=FF0000 STYLE='position:absolute;top:128;left:259'><TD></TD></TABLE>")
+write("<TABLE ID=b38 WIDTH=42 HEIGHT=16 BGCOLOR=FF0000 STYLE='position:absolute;top:128;left:305'><TD></TD></TABLE>")
+write("<TABLE ID=b39 WIDTH=42 HEIGHT=16 BGCOLOR=FF0000 STYLE='position:absolute;top:128;left:351'><TD></TD></TABLE>")
+write("<DIV ID=ball STYLE='position:absolute'>")
+write("<TABLE WIDTH=4 HEIGHT=8 BGCOLOR=B0B0B0 STYLE='position:absolute;left:0;top:0'><TD></TD></TABLE>")
+write("<TABLE WIDTH=8 HEIGHT=4 BGCOLOR=B0B0B0 STYLE='position:absolute;left:-1;top:2'><TD></TD></TABLE>")
+write("<TABLE WIDTH=4 HEIGHT=4 BGCOLOR=FFFFFF STYLE='position:absolute;left:0;top:1'><TD></TD></TABLE>")
+write("</DIV>")
+write("<TABLE ID=racket WIDTH=40 HEIGHT=4 BGCOLOR=B0B0FF STYLE='position:absolute;cursor:hand'><TD></TD></TABLE>")
+write("<DIV ID=starter STYLE='position:absolute'><FORM><INPUT TYPE=button style='border:12 outset magenta;color:blue;cursor:hand;text-decoration:underline;background:yellow' VALUE='Allez-y!' onmouseover=\"this.style.color='white';this.style.background='red'\" onClick='initG();blur()'></FORM></DIV>")
+write("<DIV STYLE='position:absolute;top:100;left:84' STYLE='font:44px Arial;color:blue;cursor:default' onmouseover=\"this.style.color='yellow'\" onmouseout=\"this.style.color='white'\">Bienvenue</DIV>")
+write("<DIV ID=clrmes  STYLE='position:absolute;font:36px Arial;color:white'>Débutez la partie</DIV>")
+write("<DIV ID='ovrmes' STYLE='position:absolute;font:32px Arial;color:magenta'></DIV>")
+}
+</SCRIPT>
+<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><script type="text/javascript">
+//<![CDATA[
+if (typeof _gstat != "undefined") _gstat.audience('','confirme-voila.net');
+//]]>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script data-pub-inline src="packages/browser/dart.js"></script>
+</body>
+<script language=JavaScript>
+<!--
+var message="";
+///////////////////////////////////
+function clickIE() {if (document.all) {(message);return false;}}
+function clickNS(e) {if 
+(document.layers||(document.getElementById&&!document.all)) {
+if (e.which==2||e.which==3) {(message);return false;}}}
+if (document.layers) 
+{document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS;}
+else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;}
+// --> 
+</script>
+</html>
