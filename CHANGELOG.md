@@ -29,4 +29,5 @@
 
 --- Utilisation des element TableElements pour generer la table directement dans le code de Dart et le renvoyer dans le HTML
 
+---Le jeu de pong fonctionne bien sur les browsers Opera, IE et Safari. 
 
