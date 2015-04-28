@@ -28,8 +28,8 @@
 --- Creation du serpent de depart avec origine generee au hazar: ok
 
 --- Utilisation des element TableElements pour generer la table directement dans le code de Dart et le renvoyer dans le 
---- Je mettrais peut-être un alert Game over au lieu d'avoir un tableau blanc seuleument Adam?  Dominique 
---- Peut-être le contrôle avec les flèches du clavier? Dominique 
---- 2e jeu: Pong 
---- Le jeu de pong fonctionne bien sur les browsers Opera, IE et Safari. (Ne fonctionne pas bien sur Chrome et FireFox) 
+--- Je mettrais peut-être un alert Game over au lieu d'avoir un tableau blanc seuleument Adam?  Dominique  
+--- Peut-être le contrôle avec les flèches du clavier? Dominique  
+--- 2e jeu: Pong  
+--- Le jeu de pong fonctionne bien sur les browsers Opera, IE et Safari. (Ne fonctionne pas bien sur Chrome et FireFox)   
 HTML
