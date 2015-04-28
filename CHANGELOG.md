@@ -27,6 +27,10 @@
 
 --- Creation du serpent de depart avec origine generee au hazar: ok
 
---- Utilisation des element TableElements pour generer la table directement dans le code de Dart et le renvoyer dans le HTML
+--- Utilisation des element TableElements pour generer la table directement dans le code de Dart et le renvoyer dans le 
+---2e jeu Pong. (fonctionne bien sur Safari, Opera et IE. Ne fonctionne pas sur FireFox et Chrome)
+
+HTML
+
 
 
