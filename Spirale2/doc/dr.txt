@@ -1,0 +1,17 @@
+pf
+
+50/60
+(-1)
+dependencies:
+  chrome: any ?
+(-1)
+avertissement dans le code
+(-1) le formatage du code
+(-1)
+line 31, column 3 of web/index.html: Failed to inline stylesheet: 
+Could not find asset Spirale2|web/styles.css.
+Failed to load resource: the server responded with a status of 404 (Not Found)
+  http://localhost:8080/styles.css
+(-1)
+More apples! pas de changements visibles
+(-5) l'application ne fournit pas une fonctionnalité minimale
